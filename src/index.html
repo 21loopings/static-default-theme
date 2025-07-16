@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My App</title>
+    <script src="../dist/bundle.js"></script>
+    <style>
+      #root {
+        white-space: pre;
+        font-family: Andale Mono;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <div id="root"></div>
+  </body>
+  <script>
+    const root = document.getElementById('root');
+    
+    const posts = [
+      {
+        index: {
+          id: '389457abc',
+          created: 1691676123
+        },
+        content: 'Blah blah...'
+      },
+      {
+        index: {
+          id: '1234567abc',
+          created: 1691677478
+        },
+        content: 'Bubu booo...'
+      },
+    ]
+    const configuration = {
+      title: 'Blog title'
+    }
+    const text = theme.generate({ posts, configuration });
+    root.textContent = text;
+  </script>
+</html>
