@@ -16,7 +16,7 @@ export interface Post {
     createdAt: number;
     publishedAt: number;
     content: string;
-    photos: [Photo];
+    photos: Photo[];
 }
 
 export interface Photo {
@@ -32,8 +32,8 @@ export enum PhotoSize {
 }
 
 export interface API {
-    getPosts: () => Promise<[Post]>;
-    getPublishedPosts: () => Promise<[Post]>;
+    getPosts: () => Promise<Post[]>;
+    getPublishedPosts: () => Promise<Post[]>;
     getPost: (id: string) => Promise<Post>;
     save: (content: String, path: String) => Promise<void>;
     savePhoto: (postId: String, photoId: String, path: String, width: number, height: number) => Promise<void>;
