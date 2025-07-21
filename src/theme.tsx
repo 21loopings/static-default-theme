@@ -1,4 +1,4 @@
-import { jsxToString } from './react/jsx-runtime';
+import { jsxToString } from './utils/jsx-support';
 import { Website, Post, API, PhotoSize } from './types';
 import { Home } from './pages/Home';
 import { Feed } from './pages/Feed';
@@ -13,7 +13,7 @@ export const createTheme = async ({ api, website }: {
     const posts = await api.getPublishedPosts();
 
     const save = async (path: string, jsx: any) => {
-        const html = jsxToString(jsx)
+        const html = jsxToString(jsx);
         await api.save(html, path);
     }
 

@@ -1,0 +1,20 @@
+{
+    "id": "7E83E819-E500-4BC0-8DAF-AAF3E81CDDE2",
+    "version": 1,
+    "name": "Default Theme",
+    "description": "Recommended theme that comes preinstalled with the app.\n\nSupports:\n- markdown posts\n- image albums\n - and more.",
+    "settings": [
+        {
+            "id": "subtitle",
+            "label": "Subtitle",
+            "type": "string"
+        }
+    ],
+    "post-settings": [
+        {
+            "id": "category",
+            "label": "Category",
+            "type": "string"
+        }
+    ]
+}

@@ -13,6 +13,7 @@ export interface Website {
 
 export interface Post {
     id: string;
+    title?: string;
     createdAt: number;
     publishedAt: number;
     content: string;

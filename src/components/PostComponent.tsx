@@ -1,19 +1,20 @@
 import { Gallery } from './Gallery';
-import { Divider } from '../components/Divider';
+import { Divider } from './Divider';
 import { getPostBasePath } from '../utils/paths';
 import { formatMarkdown } from '../utils/markdown';
 import fm from 'front-matter';
 
-const formatDate = (timestamp) => {
-    const format = { weekday: "long", year: "numeric", month: "short", day: "numeric" };
-    return new Date(timestamp).toLocaleDateString(undefined, format);
+const formatDate = (timestamp: number) => {
+    return new Date(timestamp).toLocaleDateString('en-US', {
+        weekday: "long", year: "numeric", month: "short", day: "numeric"
+    });
 };
 
-export const Post = ({ post, website }) => {
+export const PostComponent = ({ post, website }) => {
     const postLink = getPostBasePath({ post, website });
     const { attributes, body: content } = fm(post.content);
-    const title = post.title ?? attributes.title;
-
+    const title = post.title ?? (attributes as any).title;
+    const html = formatMarkdown({ content, post, website });
     return <article>
         <header>
             <a href={postLink}>
@@ -22,7 +23,9 @@ export const Post = ({ post, website }) => {
             </a>
         </header>
         <div class="content">
-            {formatMarkdown({ content, post, website })}
+            <div dangerouslySetInnerHTML={{
+                __html: html
+            }} />
             {(post.photos.length > 0) && <Gallery post={post} website={website} />}
         </div>
         {post.photos.length == 0 && <Divider />}

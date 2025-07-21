@@ -12,20 +12,22 @@
     "scripts": {
         "dev": "vite --host",
         "prebuild": "rm -rf dist/*",
-        "build": "tsc && vite build",
-        "test": "vitest",
-        "test:coverage": "vitest --coverage",
+        "build": "tsc --noEmit && bun build src/theme.tsx --outdir ./dist --format cjs",
+        "postbuild": "/bin/cp -r dist/theme.js src/resources theme.json ../static-app/Shared/Themes/Default/",
         "format": "prettier . --write",
         "upgrade": "upgradeps",
-        "release": "npm run build && echo TODO"
+        "release": "bun run build && T=dist/default-theme && mkdir $T && cp dist/theme.js $T && cp theme.json $T && cp -r src/resources $T && cd $T && zip -r ../default-theme.zip ."
     },
     "dependencies": {
         "buffer": "^6.0.3",
         "core-js": "^3.41.0",
         "front-matter": "^4.0.2",
-        "marked": "^15.0.5"
+        "glob": "^11.0.3",
+        "marked": "^15.0.5",
+        "preact-render-to-string": "^6.5.13"
     },
     "devDependencies": {
+        "@types/bun": "^1.2.19",
         "@types/jsdom": "^21.1.7",
         "@types/node": "^24.0.14",
         "@types/react": "^19.1.8",
@@ -34,7 +36,6 @@
         "jsdom": "^26.1.0",
         "lint-staged": "^16.1.2",
         "prettier": "^3.6.2",
-        "terser": "^5.43.1",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
         "upgradeps": "^2.0.8",

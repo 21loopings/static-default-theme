@@ -1,8 +1,12 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import { join } from '../utils/paths';
+import { Website } from "@/types";
+import { ComponentChildren } from "preact";
 
-export const PageWrapper = ({ website, showArchive = false }, children) => {
+export const PageWrapper = ({ website, showArchive = false, children }: {
+    website: Website, showArchive?: boolean, children: ComponentChildren
+}) => {
     const cssPath = join(website.basePath, 'resources/screen.css');
     const galleryPath = join(website.basePath, 'resources/gallery.js');
     const rssURL = join(website.basePath, 'feed.xml');

@@ -1,15 +1,19 @@
 import { marked } from 'marked';
-import { PhotoSize } from '../types';
 import { getLinkToPhoto } from './paths';
+import { Post, Website, PhotoSize } from '../types';
 
-export const formatMarkdown = ({ content, post, website }) => {
+export const formatMarkdown = ({ content, post, website }: {
+    content: string,
+    post: Post,
+    website: Website
+}): string => {
     return marked.use({
         extensions: [{
             name: 'image',
             renderer(token) {
                 const photo = post.photos.find((photo) => photo.id == token.href);
                 const link = photo
-                    ? (size) => getLinkToPhoto({ website, post, photo, size })
+                    ? (size: PhotoSize) => getLinkToPhoto({ website, post, photo, size })
                     : () => token.href;
                 return `<div class="gallery markdown-image">
         <figure>
@@ -23,6 +27,6 @@ export const formatMarkdown = ({ content, post, website }) => {
             }
         }]
     })
-        .parse(content);
+        .parse(content) as string;
 };
 
