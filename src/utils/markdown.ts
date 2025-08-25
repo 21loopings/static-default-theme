@@ -23,6 +23,7 @@ export const formatMarkdown = ({ content, post, website }: {
                 <img src="${link(PhotoSize.big)}" />
             </picture>
         </figure>
+</div>
 `;
             }
         }]
