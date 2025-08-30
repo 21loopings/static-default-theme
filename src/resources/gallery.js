@@ -3,12 +3,17 @@ const setupGallery = () => {
     const body = document.querySelector("body");
     const modal = document.getElementById("gallery-modal");
     const modalImage = modal.getElementsByClassName("gallery-img")[0];
+    const loadingIndicator = modal.getElementsByClassName("loading-indicator")[0];
     const closeButtons = Array.from(modal.getElementsByClassName("gallery-close-button"));
     const galleryElements = Array.from(document.getElementsByClassName("gallery"));
 
     var imageSources = [];
 
     const loadImg = (img) => {
+        modalImage.onload = () => {
+            modalImage.style.display = 'block';
+        }
+        modalImage.style.display = 'none';
         modalImage.src = img.src;
         modalImage.srcset = img.srcset;
     }

@@ -254,25 +254,35 @@ body.post header p {
     color: white;
 }
 
-#gallery-modal .gallery-img-wrapper {
+#gallery-modal .gallery-wrapper {
+    padding: 0;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
 
-#gallery-modal .gallery-img {
-    display: block;
-    margin: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+#gallery-modal .gallery-grid {
+    display: grid;
+}
 
+.gallery-grid .loading-indicator,
+.gallery-grid img {
+    grid-area: 1 / 1;
+}
+
+#gallery-modal .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     -webkit-user-select: none !important;
     user-select: none !important;
     cursor: default;
 }
 
+.gallery-grid .loading-indicator {
+    margin: auto;
+}
 
 .divider {
     margin: 24px auto 64px auto;
@@ -294,4 +304,41 @@ body.post header p {
     height: 25px;
     border-radius: 125px / 12px;
     box-shadow: 0 0 8px #888;
+}
+
+.loading-indicator {
+    width: 45px;
+    aspect-ratio: .75;
+    --c: no-repeat linear-gradient(#fff 0 0);
+    background:
+        var(--c) 0% 50%,
+        var(--c) 50% 50%,
+        var(--c) 100% 50%;
+    animation: l7 1s infinite linear alternate;
+}
+
+@keyframes l7 {
+    0% {
+        background-size: 20% 50%, 20% 50%, 20% 50%
+    }
+
+    20% {
+        background-size: 20% 20%, 20% 50%, 20% 50%
+    }
+
+    40% {
+        background-size: 20% 100%, 20% 20%, 20% 50%
+    }
+
+    60% {
+        background-size: 20% 50%, 20% 100%, 20% 20%
+    }
+
+    80% {
+        background-size: 20% 50%, 20% 50%, 20% 100%
+    }
+
+    100% {
+        background-size: 20% 50%, 20% 50%, 20% 50%
+    }
 }

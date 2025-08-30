@@ -13,9 +13,9 @@ export const Gallery = ({ post, website }) => {
             {post.photos.map((photo) =>
                 <figure>
                     <picture>
-                        <source media="(min-width:650px)" srcset={getLinkToPhoto({ photo, post, website, size: PhotoSize.small })} />
-                        <source media="(min-width:465px)" srcset={getLinkToPhoto({ photo, post, website, size: PhotoSize.thumbnail })} />
-                        <img src={getLinkToPhoto({ photo, post, website, size: PhotoSize.big })} />
+                        <source media="(min-width:466px)" srcset={getLinkToPhoto({ photo, post, website, size: PhotoSize.small })} />
+                        <source media="(max-width:465px)" srcset={getLinkToPhoto({ photo, post, website, size: PhotoSize.thumbnail })} />
+                        <img loading="lazy" src={getLinkToPhoto({ photo, post, website, size: PhotoSize.big })} />
                     </picture>
                 </figure>
             )}

@@ -25,8 +25,12 @@ export const PageWrapper = ({ website, showArchive = false, children }: {
 
             <div id="gallery-modal">
                 <div class="gallery-close-button">&times;</div>
-                <div class="gallery-img-wrapper">
-                    <img class="gallery-img" />
+                <div class="gallery-wrapper">
+                    <div class="gallery-grid">
+                        <div class="loading-indicator">
+                        </div>
+                        <img class="gallery-img" />
+                    </div>
                 </div>
             </div>
 
