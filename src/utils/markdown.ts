@@ -26,6 +26,16 @@ export const formatMarkdown = ({ content, post, website }: {
 </div>
 `;
             }
+        }, {
+            name: 'heading',
+            renderer({ tokens, depth }) {
+                if (!tokens) {
+                    return '';
+                }
+                const text = this.parser.parseInline(tokens);
+                return `<h${depth + 2}>${text}</h${depth + 2}>`
+            }
+
         }]
     })
         .parse(content) as string;
